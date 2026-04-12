@@ -399,8 +399,32 @@
     window.addEventListener('popstate', handleRouting);
     window.addEventListener('load', () => {
         handleRouting();
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, options);
+        
+        // --- UWCE BRIDGE SCRIPT ---
+        const prettyDomain = 'saad.uwce.ca';
+        const bridgeEl = document.getElementById('bridge-status');
+        
+        console.log("%c SAAD/MIR // SYSTEM_BOOT_SEQUENCE", "color: #60a5fa; font-weight: bold; font-size: 12px;");
+        
+        if (window.location.hostname !== prettyDomain) {
+            fetch('https://' + prettyDomain, { mode: 'no-cors' })
+                .then(() => {
+                    console.log("%c UWCE_BRIDGE: ONLINE // REDIRECTING...", "color: #34d399;");
+                    bridgeEl.textContent = 'UWCE_BRIDGE: ONLINE // REDIRECTING...';
+                    bridgeEl.style.color = '#34d399';
+                    setTimeout(() => {
+                        window.location.href = 'https://' + prettyDomain + window.location.pathname;
+                    }, 1000);
+                })
+                .catch(() => {
+                    console.log("%c UWCE_BRIDGE: OFFLINE // BACKUP_NODE_ACTIVE", "color: #ff4b4b;");
+                    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                    bridgeEl.textContent = 'UWCE_BRIDGE: OFFLINE // ACTIVE: ' + new Date().toLocaleDateString(undefined, options);
+                });
+        } else {
+            bridgeEl.textContent = 'UWCE_BRIDGE: SECURE';
+            bridgeEl.style.color = '#34d399';
+        }
     });
 
     // Intersection Observer for scroll reveal
