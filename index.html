@@ -11,11 +11,13 @@
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg: #000000;
-            --text: #eeeeee;
-            --text-dim: #888888;
+            --bg: #050505;
+            --text: #ffffff;
+            --text-dim: #a0a0a0;
             --accent: #60a5fa;
-            --border: #222222;
+            --accent-glow: rgba(96, 165, 250, 0.3);
+            --border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
         html { scroll-behavior: smooth; }
@@ -24,488 +26,342 @@
             font-family: 'JetBrains Mono', monospace;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.5;
+            line-height: 1.6;
             overflow-x: hidden;
-            padding: 4rem 2rem;
-            max-width: 800px;
-            margin: 0 auto;
+            padding: 0;
+            margin: 0;
         }
 
-        /* ── Grain Texture Overlay ── */
-        body::before {
+        /* ── Background Effects ── */
+        .bg-glow {
+            position: fixed;
+            width: 50vw; height: 50vw;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            top: -10vw; right: -10vw;
+            z-index: -1;
+            filter: blur(100px);
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .bg-glow-2 {
+            top: 60vh; left: -10vw;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.15) 0%, transparent 70%);
+        }
+
+        /* ── Grain ── */
+        body::after {
             content: "";
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            opacity: 0.04;
-            z-index: 9999;
+            opacity: 0.03;
+            z-index: 999;
             pointer-events: none;
             background-image: url("https://grainy-gradients.vercel.app/noise.svg");
         }
 
-        a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.2s; }
-        a:hover { border-bottom-color: var(--text); color: var(--accent); }
+        a { color: inherit; text-decoration: none; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        a:hover { color: var(--accent); text-shadow: 0 0 10px var(--accent-glow); }
 
-        /* ── Header ── */
-        header {
-            margin-bottom: 6rem;
-        }
-
-        .identity {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            z-index: 100;
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-            font-size: 0.85rem;
-        }
-
-        .nav-links a { border: none; color: var(--text-dim); cursor: pointer; }
-        .nav-links a.active { color: var(--text); }
-        .nav-links a:hover { color: var(--text); }
-
-        .separator {
-            font-size: 0.8rem;
-            color: var(--border);
-            user-select: none;
-            margin: 2rem 0;
-            letter-spacing: 0.2em;
-        }
-
-        /* ── Hero ── */
-        .hero {
-            margin-bottom: 8rem;
-        }
-
-        .hero h1 {
-            font-size: 1.8rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            line-height: 1.3;
-        }
-
-        .hero p {
-            color: var(--text-dim);
-            font-size: 0.95rem;
-            max-width: 600px;
-        }
-
-        .status-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-size: 0.8rem;
-            color: var(--text);
-            margin-top: 2rem;
-        }
-
-        .status-dot {
-            width: 8px; height: 8px;
-            background: #34d399;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #34d399;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.5; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        /* ── Sections ── */
-        section {
-            margin-bottom: 8rem;
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-header {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            color: var(--text-dim);
-            margin-bottom: 3rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .section-header::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
-        /* ── List Styles ── */
-        .list-item {
-            margin-bottom: 4rem;
-        }
-
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.5rem;
-        }
-
-        .item-title {
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .item-meta {
-            font-size: 0.8rem;
-            color: var(--text-dim);
-        }
-
-        .item-desc {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            margin-bottom: 1rem;
-            max-width: 700px;
-        }
-
-        .item-impact {
-            font-size: 0.85rem;
-            color: #34d399;
-            margin-bottom: 1rem;
-        }
-
-        .item-tech {
-            display: flex;
-            gap: 1rem;
-            font-size: 0.75rem;
-            color: var(--text-dim);
-        }
-
-        .item-tech span::before { content: "#"; opacity: 0.5; }
-
-        /* ── Experience Specific ── */
-        .exp-bullets {
-            list-style: none;
-            margin-top: 1rem;
-        }
-
-        .exp-bullets li {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .exp-bullets li::before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        .exp-label {
-            font-weight: 700;
-            color: var(--text);
-            display: block;
-            margin-bottom: 0.25rem;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        /* ── Lab ── */
-        .lab-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
+            backdrop-filter: blur(12px);
+            background: var(--glass);
             border-bottom: 1px solid var(--border);
         }
 
-        .lab-item:last-child { border: none; }
+        .nav-logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.05em; cursor: pointer; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { font-size: 0.8rem; color: var(--text-dim); }
+        .nav-links a.active { color: var(--text); border-bottom: 1px solid var(--text); }
 
-        .lab-info h3 { font-size: 1rem; font-weight: 400; }
-        .lab-info span { font-size: 0.75rem; color: var(--text-dim); }
+        /* ── Main Container ── */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10rem 2rem;
+        }
+
+        /* ── Hero ── */
+        .hero { margin-bottom: 12rem; }
+        .hero-title { font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 400; line-height: 1.2; margin-bottom: 2rem; color: #fff; }
+        .hero-title span { color: var(--accent); }
+        .hero-sub { color: var(--text-dim); font-size: 1rem; max-width: 600px; margin-bottom: 3rem; }
+
+        /* ── Status Widget ── */
+        .status-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+        .status-dot { width: 6px; height: 6px; background: #34d399; border-radius: 50%; box-shadow: 0 0 12px #34d399; animation: pulse 2s infinite; }
+
+        /* ── Sections ── */
+        section { margin-bottom: 10rem; opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+        section.visible { opacity: 1; transform: translateY(0); }
+
+        .section-tag { font-size: 0.7rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 3rem; display: block; }
+
+        /* ── List Elements ── */
+        .list-item {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .list-item:hover { transform: translateX(10px); }
+        .list-item:hover .item-title { color: var(--accent); }
+
+        .item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.75rem; }
+        .item-title { font-size: 1.25rem; font-weight: 500; transition: color 0.3s; }
+        .item-meta { font-size: 0.8rem; color: var(--text-dim); }
+        .item-desc { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 1.25rem; max-width: 700px; }
+        .item-tech { display: flex; gap: 1.5rem; font-size: 0.7rem; color: var(--accent); font-weight: 700; }
+
+        /* ── Experience Bullets ── */
+        .exp-detail { list-style: none; margin-top: 1.5rem; }
+        .exp-detail li { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1.5rem; padding-left: 1.5rem; position: relative; }
+        .exp-detail li::before { content: "//"; position: absolute; left: 0; color: var(--accent); opacity: 0.5; }
+        .exp-label { font-size: 0.65rem; color: var(--text); text-transform: uppercase; margin-right: 0.5rem; opacity: 0.8; }
+
+        /* ── Lab Grid ── */
+        .lab-row { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; border-bottom: 1px solid var(--border); cursor: pointer; }
+        .lab-row:hover { background: rgba(255,255,255,0.02); padding-left: 1rem; padding-right: 1rem; }
+        .lab-row h3 { font-size: 1rem; font-weight: 400; }
+        .lab-row span { font-size: 0.7rem; color: var(--text-dim); }
 
         /* ── Contact ── */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
+        .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; }
         input, textarea {
-            background: transparent;
+            background: rgba(255,255,255,0.02);
             border: 1px solid var(--border);
-            padding: 0.75rem;
-            color: var(--text);
-            font-family: inherit;
-            font-size: 0.85rem;
-            outline: none;
-        }
-
-        input:focus, textarea:focus { border-color: var(--text); }
-
-        button {
-            background: var(--text);
-            color: var(--bg);
-            border: none;
             padding: 1rem;
+            color: #fff;
             font-family: inherit;
+            outline: none;
+            transition: border 0.3s;
+        }
+        input:focus, textarea:focus { border-color: var(--accent); }
+        .btn-send {
+            background: #fff;
+            color: #000;
+            padding: 1rem;
+            border: none;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s;
         }
-
-        button:hover { background: var(--accent); color: var(--bg); }
+        .btn-send:hover { background: var(--accent); color: #fff; transform: scale(1.02); }
 
         /* ── Footer ── */
-        footer {
-            margin-top: 10rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.75rem;
-            color: var(--text-dim);
-            display: flex;
-            justify-content: space-between;
-        }
+        footer { padding: 4rem 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim); }
 
-        /* ── Tab System ── */
+        /* ── Animations ── */
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
         .tab-content { display: none; }
         .tab-content.active { display: block; }
 
-        @media (max-width: 600px) {
-            .contact-grid { grid-template-columns: 1fr; }
-            .item-header { flex-direction: column; gap: 0.25rem; }
-            body { padding: 2rem 1.5rem; }
+        @media (max-width: 768px) {
+            .contact-wrap { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .hero-title { font-size: 1.8rem; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="identity">
-        <div onclick="switchTab('home')" style="cursor: pointer;">SAAD/MIR</div>
-        <ul class="nav-links">
-            <li><a data-tab="home" class="active">Home</a></li>
-            <li><a data-tab="projects">Projects</a></li>
-            <li><a data-tab="experience">Work</a></li>
-            <li><a data-tab="lab">Lab</a></li>
-            <li><a data-tab="contact">Contact</a></li>
-        </ul>
-    </div>
-    <div class="separator">/ / / / / / / / / - - - - / / / / / / / / /</div>
-</header>
+<div class="bg-glow"></div>
+<div class="bg-glow bg-glow-2"></div>
+
+<nav>
+    <div class="nav-logo" onclick="switchTab('home')">SAAD/MIR</div>
+    <ul class="nav-links">
+        <li><a data-tab="home" class="active">Index</a></li>
+        <li><a data-tab="projects">Projects</a></li>
+        <li><a data-tab="experience">Archive</a></li>
+        <li><a data-tab="lab">Laboratory</a></li>
+        <li><a data-tab="contact">Reach</a></li>
+    </ul>
+</nav>
 
 <main>
     <!-- Tab: Home -->
-    <section id="home" class="tab-content active">
+    <section id="home" class="tab-content active visible">
         <div class="hero">
-            <h1>I build autonomous intelligence for large-scale data infrastructure.</h1>
-            <p>
-                Electrical Engineering student at the University of Waterloo. 
-                Focusing on systems architecture, quantitative analysis, and high-throughput data pipelines.
+            <h1 class="hero-title">
+                Building <span>autonomous intelligence</span> for high-scale data infrastructure.
+            </h1>
+            <p class="hero-sub">
+                Electrical Engineering at UWaterloo. Specializing in agentic workflows, 
+                quantitative modeling, and resolving complex data entropy.
             </p>
             
-            <div class="status-tag">
+            <div class="status-box">
                 <div class="status-dot"></div>
-                Available for Fall 2026 Co-op (System Active: <span id="current-date"></span>)
-            </div>
-            
-            <div style="margin-top: 3rem;">
-                <img src="https://skillicons.dev/icons?i=python,postgres,git,linux,aws,docker,cpp&theme=dark" alt="Stack" style="height: 24px; filter: grayscale(1); opacity: 0.5;" />
+                <span>Available for Fall 2026 Co-op // System Active: <span id="current-date"></span></span>
             </div>
         </div>
 
-        <div class="section-header">Featured Work</div>
-
+        <span class="section-tag">Featured_Resolution</span>
+        
         <div class="list-item">
             <div class="item-header">
-                <div class="item-title">Proprietary B2B Intelligence Engine</div>
-                <div class="item-meta">Graze AI</div>
+                <h2 class="item-title">Proprietary B2B Intelligence Engine</h2>
+                <span class="item-meta">Graze AI / 2026</span>
             </div>
-            <div class="item-desc">Architected a multi-signal entity resolution engine processing 250,000+ data points with 98% validated accuracy.</div>
-            <div class="item-impact">Slashed manual research latency by 95%</div>
+            <p class="item-desc">Architected a multi-signal entity resolution engine processing 250,000+ data points with a custom weighted scoring model.</p>
+            <div class="item-tech">
+                <span>[PYTHON]</span> <span>[LANGGRAPH]</span> <span>[REST_APIS]</span>
+            </div>
         </div>
 
         <div class="list-item">
             <div class="item-header">
-                <div class="item-title">Market Volatility Analysis</div>
-                <div class="item-meta">Quantitative Study</div>
+                <h2 class="item-title">Market Volatility Analysis</h2>
+                <span class="item-meta">Quantitative Study</span>
             </div>
-            <div class="item-desc">Python-based engine for studying risk-adjusted performance metrics in volatile environments.</div>
+            <p class="item-desc">Studying price behavior and tail-risk distribution characteristics in high-frequency data streams.</p>
+            <div class="item-tech">
+                <span>[NUMPY]</span> <span>[PANDAS]</span> <span>[STATISTICS]</span>
+            </div>
         </div>
     </section>
 
     <!-- Tab: Projects -->
     <section id="projects" class="tab-content">
-        <div class="section-header">Automation & Agentic Workflows</div>
+        <span class="section-tag">Automation_Logic</span>
         <div class="list-item">
             <div class="item-header">
-                <div class="item-title">Agentic Workflow Orchestrator</div>
-                <div class="item-meta">250k+ records/mo</div>
+                <h2 class="item-title">Agentic Workflow Orchestrator</h2>
+                <span class="item-meta">250k+ records/mo</span>
             </div>
-            <div class="item-desc">Distributed agentic system using LangGraph and n8n to automate complex GTM operations.</div>
-            <div class="item-tech"><span>LangGraph</span> <span>n8n</span> <span>Python</span></div>
+            <p class="item-desc">A self-healing distributed system built on LangGraph to manage complex GTM operations.</p>
+            <div class="item-tech"><span>[N8N]</span> <span>[PYTHON]</span> <span>[AGENTS]</span></div>
         </div>
 
         <div class="list-item">
             <div class="item-header">
-                <div class="item-title">LinkedIn Intelligence Pipeline</div>
-                <div class="item-meta">B2B Enrichment</div>
+                <h2 class="item-title">LinkedIn Intelligence Pipeline</h2>
+                <span class="item-meta">Enrichment</span>
             </div>
-            <div class="item-desc">Advanced URL routing and scraping engine that resolves "Shadow Profiles".</div>
-            <div class="item-tech"><span>Python</span> <span>Apify</span> <span>Regex</span></div>
+            <p class="item-desc">Resolving "Shadow Profiles" and redirecting scraping actors via intelligent URL routing.</p>
+            <div class="item-tech"><span>[APIFY]</span> <span>[REGEX]</span> <span>[PYTHON]</span></div>
         </div>
 
-        <div class="section-header">Software & Data Engineering</div>
+        <span class="section-tag">Hardware_Systems</span>
         <div class="list-item">
             <div class="item-header">
-                <div class="item-title">Entity Resolution Engine</div>
-                <div class="item-meta">Signal-Weighted</div>
+                <h2 class="item-title">Embedded Power Monitor</h2>
+                <span class="item-meta">STM32 / C</span>
             </div>
-            <div class="item-desc">Scoring model for deduplicating 100k+ company records across HubSpot and Smartlead.</div>
-            <div class="item-tech"><span>Python</span> <span>SQL</span> <span>Fuzzy Logic</span></div>
-        </div>
-
-        <div class="section-header">Hardware & Systems</div>
-        <div class="list-item">
-            <div class="item-header">
-                <div class="item-title">Embedded Power Monitor</div>
-                <div class="item-meta">STM32 / RTOS</div>
-            </div>
-            <div class="item-desc">Hardware system for real-time monitoring and optimization of power distribution efficiency.</div>
-            <div class="item-tech"><span>C</span> <span>STM32</span> <span>Embedded Systems</span></div>
+            <p class="item-desc">Real-time optimization of power distribution efficiency via custom firmware and PCB design.</p>
+            <div class="item-tech"><span>[RTOS]</span> <span>[C/C++]</span> <span>[HARDWARE]</span></div>
         </div>
     </section>
 
     <!-- Tab: Experience -->
     <section id="experience" class="tab-content">
-        <div class="section-header">Professional History</div>
+        <span class="section-tag">Professional_Archive</span>
         
         <div class="list-item">
             <div class="item-header">
-                <div class="item-title">Software Engineering Intern</div>
-                <div class="item-meta">Graze AI / 2026</div>
+                <h2 class="item-title">Software Engineering Intern</h2>
+                <span class="item-meta">Graze AI // 2026</span>
             </div>
-            <ul class="exp-bullets">
+            <ul class="exp-detail">
                 <li>
-                    <span class="exp-label">Action</span>
-                    Engineered a proprietary B2B intelligence engine using Python, SQL, and agentic workflows.
-                    <span class="exp-label">Context</span>
-                    Designed to process 250,000+ data points across disparate platforms with high reliability.
-                    <span class="exp-label">Result</span>
-                    Slashed manual research time by 95% while hitting 98% validated accuracy.
+                    <span class="exp-label">ACT</span> Engineered a proprietary B2B intelligence engine using Python and SQL to process 250,000+ data points.
                 </li>
                 <li>
-                    <span class="exp-label">Action</span>
-                    Developed multi-signal weighted scoring algorithms for entity resolution.
-                    <span class="exp-label">Context</span>
-                    Implemented to sync and deduplicate records across HubSpot, Smartlead, and Apollo.
-                    <span class="exp-label">Result</span>
-                    Eliminated data drift and achieved zero-duplicate integrity across 100k+ records.
+                    <span class="exp-label">CTX</span> Built to resolve entity duplication across HubSpot, Smartlead, and Apollo CRMs.
                 </li>
                 <li>
-                    <span class="exp-label">Action</span>
-                    Orchestrated distributed LangGraph agents with custom error-handling logic.
-                    <span class="exp-label">Context</span>
-                    Managed conditional routing and self-healing retries for high-volume data streams.
-                    <span class="exp-label">Result</span>
-                    Increased pipeline throughput by 4x and stabilized mission-critical data flows.
-                </li>
-                <li>
-                    <span class="exp-label">Action</span>
-                    Built robust analytical tools using a combination of VBA and Python.
-                    <span class="exp-label">Context</span>
-                    Focused on automating performance tracking and data quality audits (500+ lines of logic).
-                    <span class="exp-label">Result</span>
-                    Reclaimed 20+ hours of engineering time per week through end-to-end automation.
+                    <span class="exp-label">RES</span> Achieved 98% validated accuracy and slashed manual research latency by 95%.
                 </li>
             </ul>
         </div>
 
         <div style="margin-top: 4rem;">
-            <a href="resume.pdf" target="_blank" style="font-size: 0.8rem; border: none; color: var(--accent);">[DOWNLOAD_RESUME.PDF]</a>
+            <a href="resume.pdf" target="_blank" style="font-size: 0.8rem; border: 1px solid var(--border); padding: 1rem;">[ DOWNLOAD_RESUME.PDF ]</a>
         </div>
     </section>
 
     <!-- Tab: Lab -->
     <section id="lab" class="tab-content">
-        <div class="section-header">Technical Journal</div>
+        <span class="section-tag">Technical_Journal</span>
         
-        <div class="lab-item">
+        <div class="lab-row">
             <div class="lab-info">
                 <h3>Signal-Weighted Scoring for Entity Resolution</h3>
-                <span>April 12, 2026 / Algorithms</span>
+                <span>APR 12, 2026 // Algorithms</span>
             </div>
-            <a href="#" style="border: none;">READ</a>
+            <span>[ OPEN ]</span>
         </div>
-        <div class="lab-item">
+        <div class="lab-row">
             <div class="lab-info">
                 <h3>Scaling n8n to 250k+ Rows</h3>
-                <span>March 28, 2026 / Data Engineering</span>
+                <span>MAR 28, 2026 // Data_Eng</span>
             </div>
-            <a href="#" style="border: none;">READ</a>
+            <span>[ OPEN ]</span>
         </div>
-        <div class="lab-item">
+        <div class="lab-row">
             <div class="lab-info">
                 <h3>Analyzing Tail Risk in Market Signals</h3>
-                <span>March 15, 2026 / Quantitative</span>
+                <span>MAR 15, 2026 // Quant</span>
             </div>
-            <a href="#" style="border: none;">READ</a>
+            <span>[ OPEN ]</span>
         </div>
     </section>
 
     <!-- Tab: Contact -->
     <section id="contact" class="tab-content">
-        <div class="section-header">Connect</div>
+        <span class="section-tag">Terminal_Reach</span>
         
-        <div class="contact-grid">
+        <div class="contact-wrap">
             <div class="contact-info">
                 <p style="margin-bottom: 2rem; color: var(--text-dim); font-size: 0.9rem;">
-                    Currently looking for Fall 2026 Co-op opportunities in Software Engineering or Quantitative Trading.
+                    Seeking Fall 2026 Co-op opportunities. 
+                    Interested in quantitative trading infrastructure and autonomous data systems.
                 </p>
-                <div style="font-size: 0.85rem; color: var(--text-dim); display: flex; flex-direction: column; gap: 0.5rem;">
-                    <a href="mailto:s7mir@uwaterloo.ca" style="border: none;">s7mir@uwaterloo.ca</a>
-                    <a href="https://linkedin.com/in/saad-mir" style="border: none;">LinkedIn</a>
-                    <a href="https://github.com/saadmir" style="border: none;">GitHub</a>
-                    <a href="https://calendly.com/yourlink" style="border: none; color: var(--accent);">Schedule Intro Call</a>
+                <div style="font-size: 0.85rem; color: var(--accent); display: flex; flex-direction: column; gap: 1rem;">
+                    <a href="mailto:s7mir@uwaterloo.ca">s7mir@uwaterloo.ca</a>
+                    <a href="https://linkedin.com/in/saad-mir">LinkedIn</a>
+                    <a href="https://github.com/saadmir">GitHub</a>
+                    <a href="https://calendly.com/yourlink" style="color: #fff; text-decoration: underline;">Schedule_Call</a>
                 </div>
             </div>
 
             <form class="contact-form" action="https://formspree.io/f/mlgarede" method="POST">
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <textarea name="message" rows="4" placeholder="Message" required></textarea>
-                <button type="submit">Send Message</button>
+                <input type="text" name="name" placeholder="IDENT_NAME" required>
+                <input type="email" name="email" placeholder="IDENT_EMAIL" required>
+                <textarea name="message" rows="4" placeholder="TRANSMIT_MESSAGE" required></textarea>
+                <button type="submit" class="btn-send">Send Message</button>
             </form>
         </div>
     </section>
 </main>
 
 <footer>
-    <div>SAAD MIR / 2026</div>
-    <div>BUILT WITH PRECISION</div>
+    <div>SAAD MIR // SYSTEM_VER_2.0</div>
+    <div>WATERLOO_ENGINEERING</div>
 </footer>
 
 <script>
@@ -515,6 +371,11 @@
         });
         document.querySelectorAll('.tab-content').forEach(tab => {
             tab.classList.toggle('active', tab.id === tabId);
+            if(tab.id === tabId) {
+                setTimeout(() => tab.classList.add('visible'), 50);
+            } else {
+                tab.classList.remove('visible');
+            }
         });
         window.scrollTo(0, 0);
         history.pushState(null, null, '#' + tabId);
@@ -527,7 +388,7 @@
         else switchTab('home');
     }
 
-    document.querySelectorAll('.nav-links a, .identity div').forEach(link => {
+    document.querySelectorAll('.nav-links a, .nav-logo').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const tab = link.getAttribute('data-tab') || 'home';
@@ -541,6 +402,15 @@
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, options);
     });
+
+    // Intersection Observer for scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => observer.observe(section));
 </script>
 
 </body>
