@@ -3,135 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saad Mir — Software Engineer</title>
+    <title>Saad Mir — Systems Architect</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         /* ── Reset & Base ── */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg: #0a0a0f;
-            --bg-card: #12121a;
-            --bg-card-hover: #1a1a28;
-            --border: #1e1e2e;
-            --text: #e0e0e8;
-            --text-dim: #8888a0;
+            --bg: #000000;
+            --text: #eeeeee;
+            --text-dim: #888888;
             --accent: #60a5fa;
-            --accent-glow: rgba(96, 165, 250, 0.15);
-            --accent2: #a78bfa;
-            --accent3: #34d399;
-            --nav-height: 70px;
+            --border: #222222;
         }
 
         html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'JetBrains Mono', monospace;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
-        a:hover { color: var(--accent2); }
-
-        /* ── Animated Background Grid ── */
-        .bg-grid {
+        /* ── Grain Texture Overlay ── */
+        body::before {
+            content: "";
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            z-index: -1;
+            opacity: 0.04;
+            z-index: 9999;
             pointer-events: none;
-            background-image:
-                linear-gradient(rgba(96, 165, 250, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(96, 165, 250, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
         }
 
-        .bg-glow {
-            position: fixed;
-            width: 600px; height: 600px;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.07;
-            z-index: -1;
-            pointer-events: none;
-            animation: float 20s ease-in-out infinite;
+        a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--border); transition: all 0.2s; }
+        a:hover { border-bottom-color: var(--text); color: var(--accent); }
+
+        /* ── Header ── */
+        header {
+            margin-bottom: 6rem;
         }
 
-        .bg-glow-1 { background: var(--accent); top: -200px; right: -200px; }
-        .bg-glow-2 { background: var(--accent2); bottom: -200px; left: -200px; animation-delay: -10s; }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            33% { transform: translate(30px, -30px); }
-            66% { transform: translate(-20px, 20px); }
-        }
-
-        /* ── Nav ── */
-        nav {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            height: var(--nav-height);
-            z-index: 100;
-            padding: 0 2rem;
-            backdrop-filter: blur(20px);
-            background: rgba(10, 10, 15, 0.8);
-            border-bottom: 1px solid var(--border);
+        .identity {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .nav-logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 500;
-            font-size: 1.1rem;
-            color: var(--accent);
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            font-size: 0.85rem;
         }
 
-        .nav-links { display: flex; gap: 1.5rem; list-style: none; }
+        .nav-links a { border: none; color: var(--text-dim); cursor: pointer; }
+        .nav-links a.active { color: var(--text); }
+        .nav-links a:hover { color: var(--text); }
 
-        .nav-links a {
-            color: var(--text-dim);
-            font-size: 0.9rem;
+        .separator {
+            font-size: 0.8rem;
+            color: var(--border);
+            user-select: none;
+            margin: 2rem 0;
+            letter-spacing: 0.2em;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            margin-bottom: 8rem;
+        }
+
+        .hero h1 {
+            font-size: 1.8rem;
             font-weight: 400;
-            transition: all 0.2s;
-            padding: 0.5rem 0.75rem;
-            border-radius: 6px;
-            cursor: pointer;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
         }
 
-        .nav-links a.active {
-            color: var(--accent);
-            background: rgba(96, 165, 250, 0.1);
+        .hero p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            max-width: 600px;
         }
 
-        .nav-links a:hover:not(.active) { color: var(--text); background: rgba(255, 255, 255, 0.05); }
-
-        /* ── Main Content Area ── */
-        main {
-            flex: 1;
-            margin-top: var(--nav-height);
-            position: relative;
+        .status-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text);
+            margin-top: 2rem;
         }
 
-        .tab-content {
-            display: none;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            animation: fadeIn 0.4s ease-out;
+        .status-dot {
+            width: 8px; height: 8px;
+            background: #34d399;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #34d399;
+            animation: pulse 2s infinite;
         }
 
-        .tab-content.active {
-            display: block;
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* ── Sections ── */
+        section {
+            margin-bottom: 8rem;
+            animation: fadeIn 0.8s ease-out forwards;
         }
 
         @keyframes fadeIn {
@@ -139,655 +132,406 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ── Reusable Section Elements ── */
-        .section-label {
-            font-family: 'JetBrains Mono', monospace;
+        .section-header {
             font-size: 0.8rem;
-            color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            background: linear-gradient(135deg, var(--text) 0%, var(--text-dim) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s;
-            cursor: pointer;
-            border: none;
-        }
-
-        .btn-primary { background: var(--accent); color: var(--bg); }
-        .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 30px var(--accent-glow); }
-
-        .btn-outline { border: 1px solid var(--border); color: var(--text); background: transparent; }
-        .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-
-        /* ── Tab: Home ── */
-        .home-hero {
-            min-height: calc(80vh - var(--nav-height));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .hero-hook {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-        }
-
-        .hero-hook .gradient {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--accent3) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .at-a-glance {
-            margin-bottom: 3rem;
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .at-a-glance li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.2rem;
+            letter-spacing: 0.2em;
             color: var(--text-dim);
-        }
-
-        .at-a-glance li::before {
-            content: '→';
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        .featured-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 4rem;
-            margin-bottom: 2rem;
-            border-top: 1px solid var(--border);
-            padding-top: 2rem;
-        }
-
-        .featured-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        /* ── Tab: Projects ── */
-        .category-section {
-            margin-bottom: 4rem;
-        }
-
-        .category-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
-            color: var(--text);
-            margin-bottom: 1.5rem;
+            margin-bottom: 3rem;
             display: flex;
             align-items: center;
             gap: 1rem;
         }
 
-        .category-title::after {
-            content: '';
+        .section-header::after {
+            content: "";
             flex: 1;
             height: 1px;
             background: var(--border);
         }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .project-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            background: var(--bg-card-hover);
-        }
-
-        .project-name { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.75rem; }
-        .project-desc { font-size: 0.95rem; color: var(--text-dim); margin-bottom: 1.5rem; flex: 1; }
-        .project-impact { 
-            font-size: 0.85rem; 
-            color: var(--accent3); 
-            font-family: 'JetBrains Mono', monospace; 
-            margin-bottom: 1rem;
-            padding: 0.5rem;
-            background: rgba(52, 211, 153, 0.05);
-            border-radius: 4px;
-        }
-        .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-        .project-tech span {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            background: rgba(255, 255, 255, 0.04);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-        }
-
-        /* ── Tab: Experience ── */
-        .resume-cta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--bg-card);
-            padding: 1.5rem 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            margin-bottom: 3rem;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0; top: 0;
-            width: 2px; height: 100%;
-            background: var(--border);
-        }
-
-        .timeline-item {
-            position: relative;
+        /* ── List Styles ── */
+        .list-item {
             margin-bottom: 4rem;
         }
 
-        .timeline-dot {
-            position: absolute;
-            left: -2rem; top: 0.5rem;
-            width: 12px; height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 15px var(--accent);
-        }
-
-        .exp-header {
+        .item-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .exp-role { font-size: 1.5rem; font-weight: 700; }
-        .exp-company { color: var(--accent); font-size: 1.2rem; font-weight: 500; }
-        .exp-date { font-family: 'JetBrains Mono', monospace; color: var(--text-dim); font-size: 0.9rem; }
-
-        .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
-        .exp-bullets li { position: relative; padding-left: 1.5rem; color: var(--text-dim); }
-        .exp-bullets li::before {
-            content: '▹';
-            position: absolute;
-            left: 0; color: var(--accent);
-        }
-
-        /* ── Tab: Lab ── */
-        .lab-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .lab-post {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: all 0.3s;
-        }
-
-        .lab-post:hover { border-color: var(--accent2); transform: translateY(-2px); }
-        .lab-tag { 
-            font-family: 'JetBrains Mono', monospace; 
-            font-size: 0.7rem; 
-            color: var(--accent2); 
-            text-transform: uppercase;
+            align-items: baseline;
             margin-bottom: 0.5rem;
-            display: block;
-        }
-        .lab-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.75rem; }
-        .lab-excerpt { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 1rem; }
-        .lab-date { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-dim); }
-
-        /* ── Tab: Contact ── */
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
         }
 
-        .contact-info h3 { font-size: 1.5rem; margin-bottom: 1rem; }
-        .contact-info p { color: var(--text-dim); margin-bottom: 2rem; }
-
-        .status-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(52, 211, 153, 0.1);
-            border: 1px solid rgba(52, 211, 153, 0.2);
-            color: var(--accent3);
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 2rem;
+        .item-title {
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        .status-dot { width: 8px; height: 8px; background: var(--accent3); border-radius: 50%; animation: pulse 2s infinite; }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(52, 211, 153, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
-        }
-
-        .contact-form {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            gap: 1.25rem;
-        }
-
-        .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-        .form-group label { font-size: 0.85rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
-        .form-group input, .form-group textarea {
-            background: var(--bg);
-            border: 1px solid var(--border);
-            padding: 0.75rem;
-            border-radius: 6px;
-            color: var(--text);
-            font-family: inherit;
-        }
-
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            width: 44px; height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            transition: all 0.3s;
-        }
-
-        .social-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-
-        /* ── Footer ── */
-        footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            border-top: 1px solid var(--border);
-            font-family: 'JetBrains Mono', monospace;
+        .item-meta {
             font-size: 0.8rem;
             color: var(--text-dim);
         }
 
-        /* ── Responsive ── */
-        @media (max-width: 768px) {
-            .contact-container { grid-template-columns: 1fr; }
-            .featured-grid { grid-template-columns: 1fr; }
-            .at-a-glance li { font-size: 1rem; }
-            .section-title { font-size: 2rem; }
-            .nav-links { gap: 0.5rem; }
-            .nav-links a { font-size: 0.8rem; padding: 0.4rem 0.6rem; }
+        .item-desc {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+            max-width: 700px;
+        }
+
+        .item-impact {
+            font-size: 0.85rem;
+            color: #34d399;
+            margin-bottom: 1rem;
+        }
+
+        .item-tech {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+
+        .item-tech span::before { content: "#"; opacity: 0.5; }
+
+        /* ── Experience Specific ── */
+        .exp-bullets {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .exp-bullets li {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .exp-bullets li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .exp-label {
+            font-weight: 700;
+            color: var(--text);
+            display: block;
+            margin-bottom: 0.25rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Lab ── */
+        .lab-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .lab-item:last-child { border: none; }
+
+        .lab-info h3 { font-size: 1rem; font-weight: 400; }
+        .lab-info span { font-size: 0.75rem; color: var(--text-dim); }
+
+        /* ── Contact ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        input, textarea {
+            background: transparent;
+            border: 1px solid var(--border);
+            padding: 0.75rem;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        input:focus, textarea:focus { border-color: var(--text); }
+
+        button {
+            background: var(--text);
+            color: var(--bg);
+            border: none;
+            padding: 1rem;
+            font-family: inherit;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        button:hover { background: var(--accent); color: var(--bg); }
+
+        /* ── Footer ── */
+        footer {
+            margin-top: 10rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* ── Tab System ── */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        @media (max-width: 600px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .item-header { flex-direction: column; gap: 0.25rem; }
+            body { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="bg-grid"></div>
-<div class="bg-glow bg-glow-1"></div>
-<div class="bg-glow bg-glow-2"></div>
-
-<!-- Nav -->
-<nav>
-    <div class="nav-logo">saad.mir</div>
-    <ul class="nav-links">
-        <li><a data-tab="home" class="active">Home</a></li>
-        <li><a data-tab="projects">Projects</a></li>
-        <li><a data-tab="experience">Experience</a></li>
-        <li><a data-tab="lab">The Lab</a></li>
-        <li><a data-tab="contact">Contact</a></li>
-    </ul>
-</nav>
+<header>
+    <div class="identity">
+        <div onclick="switchTab('home')" style="cursor: pointer;">SAAD/MIR</div>
+        <ul class="nav-links">
+            <li><a data-tab="home" class="active">Home</a></li>
+            <li><a data-tab="projects">Projects</a></li>
+            <li><a data-tab="experience">Work</a></li>
+            <li><a data-tab="lab">Lab</a></li>
+            <li><a data-tab="contact">Contact</a></li>
+        </ul>
+    </div>
+    <div class="separator">/ / / / / / / / / - - - - / / / / / / / / /</div>
+</header>
 
 <main>
     <!-- Tab: Home -->
     <section id="home" class="tab-content active">
-        <div class="home-hero">
-            <span class="section-label">Electrical Engineer | Systems Architect</span>
-            <h1 class="hero-hook">
-                I build <span class="gradient">autonomous intelligence</span> for <br>
-                large-scale <span class="gradient">data infrastructure</span>.
-            </h1>
+        <div class="hero">
+            <h1>I build autonomous intelligence for large-scale data infrastructure.</h1>
+            <p>
+                Electrical Engineering student at the University of Waterloo. 
+                Focusing on systems architecture, quantitative analysis, and high-throughput data pipelines.
+            </p>
             
-            <ul class="at-a-glance">
-                <li>Electrical Engineering @ University of Waterloo</li>
-                <li>Software Engineering Intern @ Graze AI</li>
-                <li>Processing 250k+ records through agentic workflows</li>
-            </ul>
-
-            <div class="hero-btns">
-                <button class="btn btn-primary" onclick="switchTab('projects')">View Proof of Work</button>
-                <button class="btn btn-outline" onclick="switchTab('contact')">Get in Touch</button>
+            <div class="status-tag">
+                <div class="status-dot"></div>
+                Available for Fall 2026 Co-op (System Active: <span id="current-date"></span>)
+            </div>
+            
+            <div style="margin-top: 3rem;">
+                <img src="https://skillicons.dev/icons?i=python,postgres,git,linux,aws,docker,cpp&theme=dark" alt="Stack" style="height: 24px; filter: grayscale(1); opacity: 0.5;" />
             </div>
         </div>
 
-        <div class="featured-header">
-            <h2 style="font-size: 1.5rem;">Featured Proof of Work</h2>
-            <a onclick="switchTab('projects')" style="cursor: pointer; font-size: 0.9rem;">View all projects →</a>
+        <div class="section-header">Featured Work</div>
+
+        <div class="list-item">
+            <div class="item-header">
+                <div class="item-title">Proprietary B2B Intelligence Engine</div>
+                <div class="item-meta">Graze AI</div>
+            </div>
+            <div class="item-desc">Architected a multi-signal entity resolution engine processing 250,000+ data points with 98% validated accuracy.</div>
+            <div class="item-impact">Slashed manual research latency by 95%</div>
         </div>
 
-        <div class="featured-grid">
-            <div class="project-card">
-                <div class="project-name">Proprietary B2B Intelligence Engine</div>
-                <p class="project-desc">Architected a multi-signal entity resolution engine processing 250,000+ data points with 98% validated accuracy.</p>
-                <div class="project-impact">Reduced manual research latency by 95%</div>
-                <div class="project-tech">
-                    <span>Python</span> <span>LangGraph</span> <span>REST APIs</span>
-                </div>
+        <div class="list-item">
+            <div class="item-header">
+                <div class="item-title">Market Volatility Analysis</div>
+                <div class="item-meta">Quantitative Study</div>
             </div>
-            <div class="project-card">
-                <div class="project-name">Market Volatility Analysis</div>
-                <p class="project-desc">Quantitative engine for studying price behavior and risk-adjusted performance metrics in volatile environments.</p>
-                <div class="project-impact">Modeled tail-risk for high-stakes trading</div>
-                <div class="project-tech">
-                    <span>Python</span> <span>NumPy</span> <span>Pandas</span>
-                </div>
-            </div>
+            <div class="item-desc">Python-based engine for studying risk-adjusted performance metrics in volatile environments.</div>
         </div>
     </section>
 
     <!-- Tab: Projects -->
     <section id="projects" class="tab-content">
-        <span class="section-label">Portfolio</span>
-        <h2 class="section-title">The Proof</h2>
-
-        <div class="category-section">
-            <h3 class="category-title">Automation & Agentic Workflows</h3>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-name">Agentic Workflow Orchestrator</div>
-                    <p class="project-desc">Distributed agentic system using LangGraph and n8n to automate complex GTM operations and data enrichment.</p>
-                    <div class="project-impact">Processing 250k+ records/month | 99.9% Uptime</div>
-                    <div class="project-tech"><span>LangGraph</span> <span>n8n</span> <span>Python</span></div>
-                </div>
-                <div class="project-card">
-                    <div class="project-name">LinkedIn Intelligence Pipeline</div>
-                    <p class="project-desc">Advanced URL routing and scraping engine that resolves "Shadow Profiles" and extracts validated company domains.</p>
-                    <div class="project-impact">60% faster enrichment cycle</div>
-                    <div class="project-tech"><span>Python</span> <span>Apify</span> <span>Regex</span></div>
-                </div>
+        <div class="section-header">Automation & Agentic Workflows</div>
+        <div class="list-item">
+            <div class="item-header">
+                <div class="item-title">Agentic Workflow Orchestrator</div>
+                <div class="item-meta">250k+ records/mo</div>
             </div>
+            <div class="item-desc">Distributed agentic system using LangGraph and n8n to automate complex GTM operations.</div>
+            <div class="item-tech"><span>LangGraph</span> <span>n8n</span> <span>Python</span></div>
         </div>
 
-        <div class="category-section">
-            <h3 class="category-title">Software & Data Engineering</h3>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-name">Entity Resolution Engine</div>
-                    <p class="project-desc">Signal-weighted scoring model for deduplicating 100k+ company records across HubSpot and Smartlead CRMs.</p>
-                    <div class="project-impact">Zero-duplicate integrity across 5 platforms</div>
-                    <div class="project-tech"><span>Python</span> <span>SQL</span> <span>Fuzzy Logic</span></div>
-                </div>
-                <div class="project-card">
-                    <div class="project-name">GPT-4 Vision Extraction</div>
-                    <p class="project-desc">Automated visual data parsing system to convert promotional imagery into structured event intelligence.</p>
-                    <div class="project-impact">95% accuracy vs manual data entry</div>
-                    <div class="project-tech"><span>OpenAI API</span> <span>GPT-4 Vision</span></div>
-                </div>
+        <div class="list-item">
+            <div class="item-header">
+                <div class="item-title">LinkedIn Intelligence Pipeline</div>
+                <div class="item-meta">B2B Enrichment</div>
             </div>
+            <div class="item-desc">Advanced URL routing and scraping engine that resolves "Shadow Profiles".</div>
+            <div class="item-tech"><span>Python</span> <span>Apify</span> <span>Regex</span></div>
         </div>
 
-        <div class="category-section">
-            <h3 class="category-title">Hardware & Systems</h3>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-name">Embedded Power Monitor</div>
-                    <p class="project-desc">STM32-based hardware system for real-time monitoring and optimization of power distribution efficiency.</p>
-                    <div class="project-impact">±0.5% accuracy | Optimized C firmware</div>
-                    <div class="project-tech"><span>C</span> <span>STM32</span> <span>Embedded Systems</span></div>
-                </div>
+        <div class="section-header">Software & Data Engineering</div>
+        <div class="list-item">
+            <div class="item-header">
+                <div class="item-title">Entity Resolution Engine</div>
+                <div class="item-meta">Signal-Weighted</div>
             </div>
+            <div class="item-desc">Scoring model for deduplicating 100k+ company records across HubSpot and Smartlead.</div>
+            <div class="item-tech"><span>Python</span> <span>SQL</span> <span>Fuzzy Logic</span></div>
+        </div>
+
+        <div class="section-header">Hardware & Systems</div>
+        <div class="list-item">
+            <div class="item-header">
+                <div class="item-title">Embedded Power Monitor</div>
+                <div class="item-meta">STM32 / RTOS</div>
+            </div>
+            <div class="item-desc">Hardware system for real-time monitoring and optimization of power distribution efficiency.</div>
+            <div class="item-tech"><span>C</span> <span>STM32</span> <span>Embedded Systems</span></div>
         </div>
     </section>
 
     <!-- Tab: Experience -->
     <section id="experience" class="tab-content">
-        <span class="section-label">Narrative</span>
-        <h2 class="section-title">The Professional Story</h2>
-
-        <div class="resume-cta">
-            <div>
-                <h3 style="margin-bottom: 0.25rem;">Looking for the full picture?</h3>
-                <p style="color: var(--text-dim); font-size: 0.9rem;">Download my latest resume for a deep dive into my background.</p>
+        <div class="section-header">Professional History</div>
+        
+        <div class="list-item">
+            <div class="item-header">
+                <div class="item-title">Software Engineering Intern</div>
+                <div class="item-meta">Graze AI / 2026</div>
             </div>
-            <a href="resume.pdf" class="btn btn-primary" download>Download PDF</a>
+            <ul class="exp-bullets">
+                <li>
+                    <span class="exp-label">Action</span>
+                    Engineered a proprietary B2B intelligence engine using Python, SQL, and agentic workflows.
+                    <span class="exp-label">Context</span>
+                    Designed to process 250,000+ data points across disparate platforms with high reliability.
+                    <span class="exp-label">Result</span>
+                    Slashed manual research time by 95% while hitting 98% validated accuracy.
+                </li>
+                <li>
+                    <span class="exp-label">Action</span>
+                    Developed multi-signal weighted scoring algorithms for entity resolution.
+                    <span class="exp-label">Context</span>
+                    Implemented to sync and deduplicate records across HubSpot, Smartlead, and Apollo.
+                    <span class="exp-label">Result</span>
+                    Eliminated data drift and achieved zero-duplicate integrity across 100k+ records.
+                </li>
+                <li>
+                    <span class="exp-label">Action</span>
+                    Orchestrated distributed LangGraph agents with custom error-handling logic.
+                    <span class="exp-label">Context</span>
+                    Managed conditional routing and self-healing retries for high-volume data streams.
+                    <span class="exp-label">Result</span>
+                    Increased pipeline throughput by 4x and stabilized mission-critical data flows.
+                </li>
+                <li>
+                    <span class="exp-label">Action</span>
+                    Built robust analytical tools using a combination of VBA and Python.
+                    <span class="exp-label">Context</span>
+                    Focused on automating performance tracking and data quality audits (500+ lines of logic).
+                    <span class="exp-label">Result</span>
+                    Reclaimed 20+ hours of engineering time per week through end-to-end automation.
+                </li>
+            </ul>
         </div>
 
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="exp-header">
-                    <div>
-                        <div class="exp-role">Software Engineering Intern</div>
-                        <div class="exp-company">Graze AI</div>
-                    </div>
-                    <div class="exp-date">Jan 2026 — Apr 2026</div>
-                </div>
-                <ul class="exp-bullets">
-                    <li>
-                        <strong>Action:</strong> Engineered a proprietary B2B intelligence engine using Python, SQL, and agentic workflows.<br>
-                        <strong>Context:</strong> Designed to process 250,000+ data points across disparate platforms with high reliability.<br>
-                        <strong>Result:</strong> Slashed manual research time by 95% while hitting 98% validated accuracy.
-                    </li>
-                    <li>
-                        <strong>Action:</strong> Developed multi-signal weighted scoring algorithms for entity resolution.<br>
-                        <strong>Context:</strong> Implemented to sync and deduplicate records across HubSpot, Smartlead, and Apollo.<br>
-                        <strong>Result:</strong> Eliminated data drift and achieved zero-duplicate integrity across 100k+ records.
-                    </li>
-                    <li>
-                        <strong>Action:</strong> Orchestrated distributed LangGraph agents with custom error-handling logic.<br>
-                        <strong>Context:</strong> Managed conditional routing and self-healing retries for high-volume data streams.<br>
-                        <strong>Result:</strong> Increased pipeline throughput by 4x and stabilized mission-critical data flows.
-                    </li>
-                    <li>
-                        <strong>Action:</strong> Built robust analytical tools using a combination of VBA and Python.<br>
-                        <strong>Context:</strong> Focused on automating performance tracking and data quality audits (500+ lines of logic).<br>
-                        <strong>Result:</strong> Reclaimed 20+ hours of engineering time per week through end-to-end automation.
-                    </li>
-                </ul>
-            </div>
+        <div style="margin-top: 4rem;">
+            <a href="resume.pdf" target="_blank" style="font-size: 0.8rem; border: none; color: var(--accent);">[DOWNLOAD_RESUME.PDF]</a>
         </div>
     </section>
 
     <!-- Tab: Lab -->
     <section id="lab" class="tab-content">
-        <span class="section-label">The Lab</span>
-        <h2 class="section-title">Technical Journal</h2>
-        <p style="color: var(--text-dim); margin-bottom: 3rem; max-width: 600px;">
-            Exploring the intersection of engineering rigor and high-scale automation.
-        </p>
-
-        <div class="lab-grid">
-            <article class="lab-post">
-                <span class="lab-tag">Algorithms</span>
-                <h3 class="lab-title">Signal-Weighted Scoring for Entity Resolution</h3>
-                <p class="lab-excerpt">Why a LinkedIn domain match + a Google Search signal is 3x more valuable than a direct name match. A look into probabilistic data merging.</p>
-                <div class="lab-date">April 12, 2026</div>
-            </article>
-            <article class="lab-post">
-                <span class="lab-tag">Data Engineering</span>
-                <h3 class="lab-title">Scaling n8n to 250k+ Rows</h3>
-                <p class="lab-excerpt">Overcoming memory bottlenecks in workflow engines by implementing chunked processing and custom JS routing nodes.</p>
-                <div class="lab-date">March 28, 2026</div>
-            </article>
-            <article class="lab-post">
-                <span class="lab-tag">Quantitative</span>
-                <h3 class="lab-title">Analyzing Tail Risk in Market Signals</h3>
-                <p class="lab-excerpt">A deep dive into volatility regimes and signal reliability in high-stakes automated trading environments.</p>
-                <div class="lab-date">March 15, 2026</div>
-            </article>
+        <div class="section-header">Technical Journal</div>
+        
+        <div class="lab-item">
+            <div class="lab-info">
+                <h3>Signal-Weighted Scoring for Entity Resolution</h3>
+                <span>April 12, 2026 / Algorithms</span>
+            </div>
+            <a href="#" style="border: none;">READ</a>
+        </div>
+        <div class="lab-item">
+            <div class="lab-info">
+                <h3>Scaling n8n to 250k+ Rows</h3>
+                <span>March 28, 2026 / Data Engineering</span>
+            </div>
+            <a href="#" style="border: none;">READ</a>
+        </div>
+        <div class="lab-item">
+            <div class="lab-info">
+                <h3>Analyzing Tail Risk in Market Signals</h3>
+                <span>March 15, 2026 / Quantitative</span>
+            </div>
+            <a href="#" style="border: none;">READ</a>
         </div>
     </section>
 
     <!-- Tab: Contact -->
     <section id="contact" class="tab-content">
-        <span class="section-label">Connect</span>
-        <h2 class="section-title">Let's Build Something</h2>
-
-        <div class="contact-container">
+        <div class="section-header">Connect</div>
+        
+        <div class="contact-grid">
             <div class="contact-info">
-                <div class="status-tag">
-                    <div class="status-dot"></div>
-                    Available for Fall 2026 Co-op
-                </div>
-                <h3>Why reach out?</h3>
-                <p>I'm motivated by environments where disciplined analysis, risk awareness, and clear communication are critical to performance.</p>
-                
-                <div class="hero-btns" style="margin-bottom: 3rem;">
-                    <a href="https://calendly.com/yourlink" class="btn btn-primary">Schedule Intro Call</a>
-                </div>
-
-                <div style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 2rem;">
-                    <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> s7mir@uwaterloo.ca</p>
-                    <p><strong>Phone:</strong> +1 (587) 966-1095</p>
-                </div>
-
-                <div class="social-links">
-                    <a href="https://github.com/saadmir" class="social-link" title="GitHub">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                    </a>
-                    <a href="https://linkedin.com/in/saad-mir" class="social-link" title="LinkedIn">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
-                    </a>
+                <p style="margin-bottom: 2rem; color: var(--text-dim); font-size: 0.9rem;">
+                    Currently looking for Fall 2026 Co-op opportunities in Software Engineering or Quantitative Trading.
+                </p>
+                <div style="font-size: 0.85rem; color: var(--text-dim); display: flex; flex-direction: column; gap: 0.5rem;">
+                    <a href="mailto:s7mir@uwaterloo.ca" style="border: none;">s7mir@uwaterloo.ca</a>
+                    <a href="https://linkedin.com/in/saad-mir" style="border: none;">LinkedIn</a>
+                    <a href="https://github.com/saadmir" style="border: none;">GitHub</a>
+                    <a href="https://calendly.com/yourlink" style="border: none; color: var(--accent);">Schedule Intro Call</a>
                 </div>
             </div>
 
-            <form class="contact-form" action="https://formspree.io/f/your-id" method="POST">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="John Doe" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" placeholder="Fall 2026 Co-op Inquiry" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Tell me about your team's goals..." required></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Send Message</button>
+            <form class="contact-form" action="https://formspree.io/f/mlgarede" method="POST">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" rows="4" placeholder="Message" required></textarea>
+                <button type="submit">Send Message</button>
             </form>
         </div>
     </section>
 </main>
 
 <footer>
-    <div class="social-links" style="justify-content: center; margin-bottom: 1.5rem; margin-top: 0;">
-        <a href="https://github.com/saadmir" class="social-link" title="GitHub">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-        <a href="https://linkedin.com/in/saad-mir" class="social-link" title="LinkedIn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
-        </a>
-    </div>
-    <p>Designed & built by Saad Mir &copy; 2026 | Built with automated logic & precision</p>
+    <div>SAAD MIR / 2026</div>
+    <div>BUILT WITH PRECISION</div>
 </footer>
 
 <script>
     function switchTab(tabId) {
-        // Update nav links
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.classList.toggle('active', link.getAttribute('data-tab') === tabId);
         });
-
-        // Update tab content
         document.querySelectorAll('.tab-content').forEach(tab => {
             tab.classList.toggle('active', tab.id === tabId);
         });
-
-        // Scroll to top
         window.scrollTo(0, 0);
-
-        // Update URL hash without jumping
         history.pushState(null, null, '#' + tabId);
     }
 
-    // Handle initial load and browser back/forward
     function handleRouting() {
         const hash = window.location.hash.substring(1) || 'home';
         const validTabs = ['home', 'projects', 'experience', 'lab', 'contact'];
-        if (validTabs.includes(hash)) {
-            switchTab(hash);
-        } else {
-            switchTab('home');
-        }
+        if (validTabs.includes(hash)) switchTab(hash);
+        else switchTab('home');
     }
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
+    document.querySelectorAll('.nav-links a, .identity div').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            switchTab(link.getAttribute('data-tab'));
+            const tab = link.getAttribute('data-tab') || 'home';
+            switchTab(tab);
         });
     });
 
@@ -796,28 +540,6 @@
         handleRouting();
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, options);
-    });
-
-    // Subtle background effect
-    const glow1 = document.querySelector('.bg-glow-1');
-    document.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        glow1.style.transform = `translate(${x * 40 - 20}px, ${y * 40 - 20}px)`;
-    });
-</script>
-
-</body>
-</html>
-* 40 - 20}px)`;
-    });
-</script>
-
-</body>
-</html>
-innerWidth;
-        const y = e.clientY / window.innerHeight;
-        glow1.style.transform = `translate(${x * 40 - 20}px, ${y * 40 - 20}px)`;
     });
 </script>
 
