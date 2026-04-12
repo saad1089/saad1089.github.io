@@ -792,12 +792,30 @@
     });
 
     window.addEventListener('popstate', handleRouting);
-    window.addEventListener('load', handleRouting);
+    window.addEventListener('load', () => {
+        handleRouting();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, options);
+    });
 
     // Subtle background effect
     const glow1 = document.querySelector('.bg-glow-1');
     document.addEventListener('mousemove', (e) => {
         const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        glow1.style.transform = `translate(${x * 40 - 20}px, ${y * 40 - 20}px)`;
+    });
+</script>
+
+</body>
+</html>
+* 40 - 20}px)`;
+    });
+</script>
+
+</body>
+</html>
+innerWidth;
         const y = e.clientY / window.innerHeight;
         glow1.style.transform = `translate(${x * 40 - 20}px, ${y * 40 - 20}px)`;
     });
