@@ -543,11 +543,11 @@
                 </div>
             </div>
             <div class="project-card">
-                <div class="project-name">Market Volatility Analysis</div>
-                <p class="project-desc">Quantitative engine for studying price behavior and risk-adjusted performance metrics in volatile environments.</p>
-                <div class="project-impact">Modeled tail-risk for high-stakes trading</div>
+                <div class="project-name">Agentic Workflow Orchestrator</div>
+                <p class="project-desc">Distributed agentic system using LangGraph and n8n to automate complex GTM operations and data enrichment.</p>
+                <div class="project-impact">Processing 250k+ records/month | 99.9% Uptime</div>
                 <div class="project-tech">
-                    <span>Python</span> <span>NumPy</span> <span>Pandas</span>
+                    <span>LangGraph</span> <span>n8n</span> <span>Python</span>
                 </div>
             </div>
         </div>
@@ -719,7 +719,7 @@
                 </div>
             </div>
 
-            <form class="contact-form" action="https://formspree.io/f/your-id" method="POST">
+            <form class="contact-form" action="https://formspree.io/f/mlgarede" method="POST">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="John Doe" required>
@@ -756,24 +756,16 @@
 
 <script>
     function switchTab(tabId) {
-        // Update nav links
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.classList.toggle('active', link.getAttribute('data-tab') === tabId);
         });
-
-        // Update tab content
         document.querySelectorAll('.tab-content').forEach(tab => {
             tab.classList.toggle('active', tab.id === tabId);
         });
-
-        // Scroll to top
         window.scrollTo(0, 0);
-
-        // Update URL hash without jumping
         history.pushState(null, null, '#' + tabId);
     }
 
-    // Handle initial load and browser back/forward
     function handleRouting() {
         const hash = window.location.hash.substring(1) || 'home';
         const validTabs = ['home', 'projects', 'experience', 'lab', 'contact'];
@@ -792,32 +784,16 @@
     });
 
     window.addEventListener('popstate', handleRouting);
-    window.addEventListener('load', () => {
-        handleRouting();
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, options);
-    });
+    window.addEventListener('load', handleRouting);
 
     // Subtle background effect
     const glow1 = document.querySelector('.bg-glow-1');
     document.addEventListener('mousemove', (e) => {
         const x = e.clientX / window.innerWidth;
         const y = e.clientY / window.innerHeight;
-        glow1.style.transform = `translate(${x * 40 - 20}px, ${y * 40 - 20}px)`;
-    });
-</script>
-
-</body>
-</html>
-* 40 - 20}px)`;
-    });
-</script>
-
-</body>
-</html>
-innerWidth;
-        const y = e.clientY / window.innerHeight;
-        glow1.style.transform = `translate(${x * 40 - 20}px, ${y * 40 - 20}px)`;
+        if (glow1) {
+            glow1.style.transform = `translate(${x * 40 - 20}px, ${y * 40 - 20}px)`;
+        }
     });
 </script>
 
