@@ -35,10 +35,43 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            opacity: 0; /* Hidden for preloader */
+            transition: opacity 0.5s ease-in;
         }
+
+        body.loaded { opacity: 1; }
 
         a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
         a:hover { color: var(--accent2); }
+
+        /* ── Preloader ── */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+        }
+
+        #preloader-text {
+            overflow: hidden;
+            border-right: .15em solid var(--accent);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: 
+                typing 1.5s steps(20, end),
+                blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--accent); } }
 
         /* ── Animated Background Grid ── */
         .bg-grid {
@@ -127,16 +160,22 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 4rem 2rem;
-            animation: fadeIn 0.4s ease-out;
         }
 
         .tab-content.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* ── Scroll Reveals ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* ── Reusable Section Elements ── */
@@ -490,6 +529,10 @@
 </head>
 <body>
 
+<div id="preloader">
+    <div id="preloader-text"></div>
+</div>
+
 <div class="bg-grid"></div>
 <div class="bg-glow bg-glow-1"></div>
 <div class="bg-glow bg-glow-2"></div>
@@ -509,7 +552,7 @@
 <main>
     <!-- Tab: Home -->
     <section id="home" class="tab-content active">
-        <div class="home-hero">
+        <div class="home-hero reveal">
             <span class="section-label">Electrical Engineer | Systems Architect</span>
             <h1 class="hero-hook">
                 I build <span class="gradient">autonomous intelligence</span> for <br>
@@ -526,15 +569,20 @@
                 <button class="btn btn-primary" onclick="switchTab('projects')">View Proof of Work</button>
                 <button class="btn btn-outline" onclick="switchTab('contact')">Get in Touch</button>
             </div>
+
+            <div class="tech-stack-mini" style="margin-top: 3rem; display: flex; align-items: center; gap: 1rem;">
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase;">Core Stack:</span>
+                <img src="https://skillicons.dev/icons?i=python,postgres,git,linux,aws,docker,cpp&theme=dark" alt="Stack" style="height: 32px;" />
+            </div>
         </div>
 
-        <div class="featured-header">
+        <div class="featured-header reveal">
             <h2 style="font-size: 1.5rem;">Featured Proof of Work</h2>
             <a onclick="switchTab('projects')" style="cursor: pointer; font-size: 0.9rem;">View all projects →</a>
         </div>
 
         <div class="featured-grid">
-            <div class="project-card">
+            <div class="project-card reveal">
                 <div class="project-name">Proprietary B2B Intelligence Engine</div>
                 <p class="project-desc">Architected a multi-signal entity resolution engine processing 250,000+ data points with 98% validated accuracy.</p>
                 <div class="project-impact">Reduced manual research latency by 95%</div>
@@ -542,7 +590,7 @@
                     <span>Python</span> <span>LangGraph</span> <span>REST APIs</span>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card reveal">
                 <div class="project-name">Agentic Workflow Orchestrator</div>
                 <p class="project-desc">Distributed agentic system using LangGraph and n8n to automate complex GTM operations and data enrichment.</p>
                 <div class="project-impact">Processing 250k+ records/month | 99.9% Uptime</div>
@@ -555,19 +603,19 @@
 
     <!-- Tab: Projects -->
     <section id="projects" class="tab-content">
-        <span class="section-label">Portfolio</span>
-        <h2 class="section-title">The Proof</h2>
+        <span class="section-label reveal">Portfolio</span>
+        <h2 class="section-title reveal">The Proof</h2>
 
         <div class="category-section">
-            <h3 class="category-title">Automation & Agentic Workflows</h3>
+            <h3 class="category-title reveal">Automation & Agentic Workflows</h3>
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card reveal">
                     <div class="project-name">Agentic Workflow Orchestrator</div>
                     <p class="project-desc">Distributed agentic system using LangGraph and n8n to automate complex GTM operations and data enrichment.</p>
                     <div class="project-impact">Processing 250k+ records/month | 99.9% Uptime</div>
                     <div class="project-tech"><span>LangGraph</span> <span>n8n</span> <span>Python</span></div>
                 </div>
-                <div class="project-card">
+                <div class="project-card reveal">
                     <div class="project-name">LinkedIn Intelligence Pipeline</div>
                     <p class="project-desc">Advanced URL routing and scraping engine that resolves "Shadow Profiles" and extracts validated company domains.</p>
                     <div class="project-impact">60% faster enrichment cycle</div>
@@ -577,15 +625,15 @@
         </div>
 
         <div class="category-section">
-            <h3 class="category-title">Software & Data Engineering</h3>
+            <h3 class="category-title reveal">Software & Data Engineering</h3>
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card reveal">
                     <div class="project-name">Entity Resolution Engine</div>
                     <p class="project-desc">Signal-weighted scoring model for deduplicating 100k+ company records across HubSpot and Smartlead CRMs.</p>
                     <div class="project-impact">Zero-duplicate integrity across 5 platforms</div>
                     <div class="project-tech"><span>Python</span> <span>SQL</span> <span>Fuzzy Logic</span></div>
                 </div>
-                <div class="project-card">
+                <div class="project-card reveal">
                     <div class="project-name">GPT-4 Vision Extraction</div>
                     <p class="project-desc">Automated visual data parsing system to convert promotional imagery into structured event intelligence.</p>
                     <div class="project-impact">95% accuracy vs manual data entry</div>
@@ -595,9 +643,9 @@
         </div>
 
         <div class="category-section">
-            <h3 class="category-title">Hardware & Systems</h3>
+            <h3 class="category-title reveal">Hardware & Systems</h3>
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card reveal">
                     <div class="project-name">Embedded Power Monitor</div>
                     <p class="project-desc">STM32-based hardware system for real-time monitoring and optimization of power distribution efficiency.</p>
                     <div class="project-impact">±0.5% accuracy | Optimized C firmware</div>
@@ -609,10 +657,10 @@
 
     <!-- Tab: Experience -->
     <section id="experience" class="tab-content">
-        <span class="section-label">Narrative</span>
-        <h2 class="section-title">The Professional Story</h2>
+        <span class="section-label reveal">Narrative</span>
+        <h2 class="section-title reveal">The Professional Story</h2>
 
-        <div class="resume-cta">
+        <div class="resume-cta reveal">
             <div>
                 <h3 style="margin-bottom: 0.25rem;">Looking for the full picture?</h3>
                 <p style="color: var(--text-dim); font-size: 0.9rem;">Download my latest resume for a deep dive into my background.</p>
@@ -621,7 +669,7 @@
         </div>
 
         <div class="timeline">
-            <div class="timeline-item">
+            <div class="timeline-item reveal">
                 <div class="timeline-dot"></div>
                 <div class="exp-header">
                     <div>
@@ -658,26 +706,26 @@
 
     <!-- Tab: Lab -->
     <section id="lab" class="tab-content">
-        <span class="section-label">The Lab</span>
-        <h2 class="section-title">Technical Journal</h2>
-        <p style="color: var(--text-dim); margin-bottom: 3rem; max-width: 600px;">
+        <span class="section-label reveal">The Lab</span>
+        <h2 class="section-title reveal">Technical Journal</h2>
+        <p style="color: var(--text-dim); margin-bottom: 3rem; max-width: 600px;" class="reveal">
             Exploring the intersection of engineering rigor and high-scale automation.
         </p>
 
         <div class="lab-grid">
-            <article class="lab-post">
+            <article class="lab-post reveal">
                 <span class="lab-tag">Algorithms</span>
                 <h3 class="lab-title">Signal-Weighted Scoring for Entity Resolution</h3>
                 <p class="lab-excerpt">Why a LinkedIn domain match + a Google Search signal is 3x more valuable than a direct name match. A look into probabilistic data merging.</p>
                 <div class="lab-date">April 12, 2026</div>
             </article>
-            <article class="lab-post">
+            <article class="lab-post reveal">
                 <span class="lab-tag">Data Engineering</span>
                 <h3 class="lab-title">Scaling n8n to 250k+ Rows</h3>
                 <p class="lab-excerpt">Overcoming memory bottlenecks in workflow engines by implementing chunked processing and custom JS routing nodes.</p>
                 <div class="lab-date">March 28, 2026</div>
             </article>
-            <article class="lab-post">
+            <article class="lab-post reveal">
                 <span class="lab-tag">Quantitative</span>
                 <h3 class="lab-title">Analyzing Tail Risk in Market Signals</h3>
                 <p class="lab-excerpt">A deep dive into volatility regimes and signal reliability in high-stakes automated trading environments.</p>
@@ -688,14 +736,17 @@
 
     <!-- Tab: Contact -->
     <section id="contact" class="tab-content">
-        <span class="section-label">Connect</span>
-        <h2 class="section-title">Let's Build Something</h2>
+        <span class="section-label reveal">Connect</span>
+        <h2 class="section-title reveal">Let's Build Something</h2>
 
         <div class="contact-container">
-            <div class="contact-info">
+            <div class="contact-info reveal">
                 <div class="status-tag">
                     <div class="status-dot"></div>
                     Available for Fall 2026 Co-op
+                </div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-dim); margin-top: -1.5rem; margin-bottom: 2rem; text-align: left;">
+                    System Active: <span id="current-date"></span>
                 </div>
                 <h3>Why reach out?</h3>
                 <p>I'm motivated by environments where disciplined analysis, risk awareness, and clear communication are critical to performance.</p>
@@ -706,20 +757,23 @@
 
                 <div style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 2rem;">
                     <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> s7mir@uwaterloo.ca</p>
-                    <p><strong>Phone:</strong> +1 (587) 966-1095</p>
+                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/saad-mir-1b166736a/" target="_blank">saad-mir-1b166736a</a></p>
                 </div>
 
                 <div class="social-links">
+                    <a href="https://github.com/saad1089" class="social-link" title="GitHub">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
                     <a href="https://github.com/saadmir" class="social-link" title="GitHub">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
                     </a>
-                    <a href="https://linkedin.com/in/saad-mir" class="social-link" title="LinkedIn">
+                    <a href="https://www.linkedin.com/in/saad-mir-1b166736a/" class="social-link" title="LinkedIn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
                     </a>
                 </div>
             </div>
 
-            <form class="contact-form" action="https://formspree.io/f/mlgarede" method="POST">
+            <form class="contact-form reveal" action="https://formspree.io/f/mlgarede" method="POST">
                 <div class="form-group">
                     <label for="name">Name</label>
                     <input type="text" id="name" name="name" placeholder="John Doe" required>
@@ -747,7 +801,7 @@
         <a href="https://github.com/saadmir" class="social-link" title="GitHub">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
         </a>
-        <a href="https://linkedin.com/in/saad-mir" class="social-link" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/saad-mir-1b166736a/" class="social-link" title="LinkedIn">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z"/></svg>
         </a>
     </div>
@@ -755,6 +809,27 @@
 </footer>
 
 <script>
+    // ── Preloader ──
+    const preloaderText = document.getElementById('preloader-text');
+    const words = ["PYTHON", "SQL", "LANGGRAPH", "N8N", "RTOS", "ETL", "SAAD MIR"];
+    let wordIndex = 0;
+
+    function cycleWords() {
+        if (wordIndex < words.length) {
+            preloaderText.textContent = words[wordIndex];
+            wordIndex++;
+            setTimeout(cycleWords, 200);
+        } else {
+            setTimeout(() => {
+                document.getElementById('preloader').style.display = 'none';
+                document.body.classList.add('loaded');
+                handleRouting();
+            }, 500);
+        }
+    }
+
+    window.addEventListener('load', cycleWords);
+
     function switchTab(tabId) {
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.classList.toggle('active', link.getAttribute('data-tab') === tabId);
@@ -764,16 +839,19 @@
         });
         window.scrollTo(0, 0);
         history.pushState(null, null, '#' + tabId);
+        
+        // Re-trigger reveals for new tab
+        document.querySelectorAll('.tab-content.active .reveal').forEach(el => {
+            el.classList.remove('visible');
+            setTimeout(() => observer.observe(el), 10);
+        });
     }
 
     function handleRouting() {
         const hash = window.location.hash.substring(1) || 'home';
         const validTabs = ['home', 'projects', 'experience', 'lab', 'contact'];
-        if (validTabs.includes(hash)) {
-            switchTab(hash);
-        } else {
-            switchTab('home');
-        }
+        if (validTabs.includes(hash)) switchTab(hash);
+        else switchTab('home');
     }
 
     document.querySelectorAll('.nav-links a').forEach(link => {
@@ -784,9 +862,24 @@
     });
 
     window.addEventListener('popstate', handleRouting);
-    window.addEventListener('load', handleRouting);
 
-    // Subtle background effect
+    // ── Date Logic ──
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const dateEl = document.getElementById('current-date');
+    if (dateEl) dateEl.textContent = new Date().toLocaleDateString(undefined, options);
+
+    // ── Scroll Reveal ──
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Glow Effect ──
     const glow1 = document.querySelector('.bg-glow-1');
     document.addEventListener('mousemove', (e) => {
         const x = e.clientX / window.innerWidth;
