@@ -561,7 +561,8 @@
             
             <ul class="at-a-glance">
                 <li>Electrical Engineering @ University of Waterloo</li>
-                <li>Software Engineering Intern @ Graze AI</li>
+                <li>Performance Engineer (V&amp;V) @ Agfa HealthCare</li>
+                <li>Previously Software Engineering Intern @ Graze AI</li>
                 <li>Processing 250k+ records through agentic workflows</li>
             </ul>
 
@@ -596,6 +597,22 @@
                 <div class="project-impact">Processing 250k+ records/month | 99.9% Uptime</div>
                 <div class="project-tech">
                     <span>LangGraph</span> <span>n8n</span> <span>Python</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-name">CV Data Pipeline</div>
+                <p class="project-desc">Fully automated, fail-closed pipeline for computer-vision dataset generation: download, preprocessing, frame extraction, validation and upload.</p>
+                <div class="project-impact">Ingestion-to-upload cut from ~5 min to under 2 min (60%+)</div>
+                <div class="project-tech">
+                    <span>Python</span> <span>GitHub Actions</span> <span>Roboflow SDK</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-name">Multi-threaded HTTP Server</div>
+                <p class="project-desc">HTTP/1.1 server with a modular Command-pattern router and an event loop, backed by pytest integration tests.</p>
+                <div class="project-impact">6,700+ req/s | 2.5x throughput from event loop</div>
+                <div class="project-tech">
+                    <span>C++</span> <span>POSIX</span> <span>Pytest</span>
                 </div>
             </div>
         </div>
@@ -639,6 +656,30 @@
                     <div class="project-impact">95% accuracy vs manual data entry</div>
                     <div class="project-tech"><span>OpenAI API</span> <span>GPT-4 Vision</span></div>
                 </div>
+                <div class="project-card reveal">
+                    <div class="project-name">CV Data Pipeline</div>
+                    <p class="project-desc">Idempotent, fail-closed batch pipeline with per-job failure isolation and a GitHub Actions control plane with validation gates and rate limiting.</p>
+                    <div class="project-impact">~5 min to under 2 min per clip (60%+ faster)</div>
+                    <div class="project-tech"><span>Python</span> <span>GitHub Actions</span> <span>Roboflow SDK</span></div>
+                </div>
+                <div class="project-card reveal">
+                    <div class="project-name">Multi-threaded HTTP Server</div>
+                    <p class="project-desc">HTTP/1.1 server in C++ with 6 custom endpoints, a Command-pattern routing system and an event loop to cut I/O overhead.</p>
+                    <div class="project-impact">6,700+ req/s | 2.5x throughput</div>
+                    <div class="project-tech"><span>C++</span> <span>POSIX</span> <span>Pytest</span></div>
+                </div>
+                <div class="project-card reveal">
+                    <div class="project-name">Habitcore</div>
+                    <p class="project-desc">Markdown-native habit tracker with a Python core, Flask API and React/TypeScript dashboard. Crash-safe atomic writes and conflict detection for Obsidian Sync.</p>
+                    <div class="project-impact">Matches Loop's habit-strength scores across 237 days of history</div>
+                    <div class="project-tech"><span>Python</span> <span>Flask</span> <span>React</span> <span>TypeScript</span></div>
+                </div>
+                <div class="project-card reveal">
+                    <div class="project-name">GPU-Accelerated SPH Fluid Simulation</div>
+                    <p class="project-desc">2D fluid simulator with GPU spatial-hash neighbor search and compute kernels for density, pressure and viscosity.</p>
+                    <div class="project-impact">10K+ particles | CPU vs GPU benchmarked</div>
+                    <div class="project-tech"><span>C++</span> <span>Metal</span></div>
+                </div>
             </div>
         </div>
 
@@ -650,6 +691,24 @@
                     <p class="project-desc">STM32-based hardware system for real-time monitoring and optimization of power distribution efficiency.</p>
                     <div class="project-impact">±0.5% accuracy | Optimized C firmware</div>
                     <div class="project-tech"><span>C</span> <span>STM32</span> <span>Embedded Systems</span></div>
+                </div>
+                <div class="project-card reveal">
+                    <div class="project-name">Battery Management &amp; Energy Monitoring</div>
+                    <p class="project-desc">ESP32 system measuring voltage, current, temperature and energy with real-time fault detection, plus Python tooling to analyze charge/discharge behavior.</p>
+                    <div class="project-impact">Validated against controlled load experiments</div>
+                    <div class="project-tech"><span>C++</span> <span>ESP32</span> <span>Python</span></div>
+                </div>
+                <div class="project-card reveal">
+                    <div class="project-name">FPGA Real-Time Motor Control</div>
+                    <p class="project-desc">SystemVerilog closed-loop speed controller with PWM generation, sensor interfaces and FSM control logic, tuned from measured system response.</p>
+                    <div class="project-impact">Closed-loop speed control on hardware</div>
+                    <div class="project-tech"><span>SystemVerilog</span> <span>FPGA</span> <span>Quartus</span></div>
+                </div>
+                <div class="project-card reveal">
+                    <div class="project-name">Digital Buck Converter</div>
+                    <p class="project-desc">Low-voltage DC-DC buck converter with MOSFET switching and PWM feedback control, characterized for efficiency, regulation and thermal behavior.</p>
+                    <div class="project-impact">Debugged and validated with oscilloscope measurements</div>
+                    <div class="project-tech"><span>PWM</span> <span>MOSFETs</span> <span>Embedded C/C++</span></div>
                 </div>
             </div>
         </div>
@@ -669,6 +728,34 @@
         </div>
 
         <div class="timeline">
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-role">Performance Engineer, Verification &amp; Validation</div>
+                        <div class="exp-company">Agfa HealthCare</div>
+                    </div>
+                    <div class="exp-date">Sep 2026 — Present</div>
+                </div>
+                <ul class="exp-bullets">
+                    <li>
+                        <strong>Action:</strong> Design and run load and performance tests against deployed Enterprise Imaging (EI) environments.<br>
+                        <strong>Context:</strong> EI is a medical imaging platform where reliability and repeatability matter.<br>
+                        <strong>Result:</strong> Surface bottlenecks and failures through log analysis and root-cause investigation across Linux, AWS and Kubernetes.
+                    </li>
+                    <li>
+                        <strong>Action:</strong> Deployed a fresh on-prem EI 8.4.5 cluster (database, dual core and web servers, HAProxy, Kubernetes) and installed EI 8.2.x with three VM-based proxy clusters.<br>
+                        <strong>Context:</strong> Followed internal documentation and validated end-to-end reading workflows.<br>
+                        <strong>Result:</strong> Recorded unclear steps that fed back into the official installation guides.
+                    </li>
+                    <li>
+                        <strong>Action:</strong> Build automation for testing and analysis workflows.<br>
+                        <strong>Context:</strong> Part of a SAFe team using Jira and Xray, covering regression, upgrade (8.3.x to 8.4.5), AWS/on-prem and failover testing.<br>
+                        <strong>Result:</strong> More repeatable measurements, less manual effort and faster validation.
+                    </li>
+                </ul>
+            </div>
+
             <div class="timeline-item reveal">
                 <div class="timeline-dot"></div>
                 <div class="exp-header">
@@ -743,7 +830,7 @@
             <div class="contact-info reveal">
                 <div class="status-tag">
                     <div class="status-dot"></div>
-                    Available for Fall 2026 Co-op
+                    Available for Spring 2027 Co-op
                 </div>
                 <div style="font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-dim); margin-top: -1.5rem; margin-bottom: 2rem; text-align: left;">
                     System Active: <span id="current-date"></span>
@@ -756,7 +843,7 @@
                 </div>
 
                 <div style="color: var(--text-dim); font-size: 0.95rem; margin-bottom: 2rem;">
-                    <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> <a href="mailto:saadmir1082@gmail.com">s7mir@uwaterloo.ca</a></p>
+                    <p style="margin-bottom: 0.5rem;"><strong>Email:</strong> <a href="mailto:s7mir@uwaterloo.ca">s7mir@uwaterloo.ca</a></p>
                     <p style="margin-bottom: 0.5rem;"><strong>Phone:</strong> +1 (587) 966-1095</p>
                     <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/saad-mir-1b166736a/" target="_blank">saad-mir-1b166736a</a></p>
                 </div>
@@ -782,7 +869,7 @@
                 </div>
                 <div class="form-group">
                     <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" placeholder="Fall 2026 Co-op Inquiry" required>
+                    <input type="text" id="subject" name="subject" placeholder="Spring 2027 Co-op Inquiry" required>
                 </div>
                 <div class="form-group">
                     <label for="message">Message</label>
