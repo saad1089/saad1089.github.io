@@ -1,0 +1,270 @@
+%==========================================================
+% MASTER RESUME - Saad Mir
+% Superset of all experience, projects, and skills.
+% Not meant to be sent as-is: tailor per job posting.
+%==========================================================
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[margin=0.65in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\setlist[itemize]{leftmargin=0.18in, itemsep=1pt, topsep=2pt, parsep=0pt, partopsep=0pt}
+
+\titleformat{\section}{\large\bfseries}{}{0pt}{}[\vspace{-4pt}\titlerule]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+
+% Spacer between entries
+\newcommand{\entrygap}{\vspace{5pt}}
+
+\begin{document}
+
+%==================== HEADER ====================
+\begin{center}
+    {\LARGE \textbf{Saad Mir}}\\[3pt]
+    Waterloo, ON $|$ +1 (587) 966-1095 $|$
+    \href{mailto:s7mir@uwaterloo.ca}{s7mir@uwaterloo.ca}\\[2pt]
+    \href{https://github.com/saad1089}{github.com/saad1089} $|$
+    \href{https://www.linkedin.com/in/saad-mir}{linkedin.com/in/saad-mir} $|$
+    \href{https://saad1089.github.io/}{saad1089.github.io}
+\end{center}
+
+%==================== SUMMARY ====================
+\section*{Professional Summary}
+Motivated Electrical Engineering student with hands-on experience in software development, automation, data pipelines, embedded systems, and hardware/software integration. Skilled in Python, C/C++, Kotlin, and web technologies, with experience building interactive, reliable, and testable systems. Strong problem-solving, collaboration, and analytical skills, eager to contribute in fast-paced, innovative environments.
+
+%==================== EDUCATION ====================
+\section*{Education}
+\textbf{University of Waterloo} \hfill Waterloo, ON\\
+Bachelor of Applied Science in Electrical Engineering \hfill \\
+\textbf{Relevant Coursework:} Programming Fundamentals, Data Structures, Algorithms, Software Design, Engineering Design, Circuits, Electricity \& Magnetism, Digital Logic, Waves \& Optics
+
+%==================== TRAINING ====================
+\section*{Training \& Courses}
+\begin{itemize}
+    \item \textbf{AWS Training Courses} -- Completed AWS courses covering cloud computing and infrastructure (add exact course names/provider if you have them)
+\end{itemize}
+
+%==================== TECHNICAL SKILLS ====================
+\section*{Technical Skills}
+\begin{itemize}
+    \item \textbf{Programming:} Python, C, C++, Objective-C++, Bash, SQL, Kotlin, Java, JavaScript, HTML, CSS, VBA, SystemVerilog, Verilog, Verilog HDL, MATLAB
+    \item \textbf{Web \& Backend:} React, FastAPI, Flask, Spring Boot, PostgreSQL, REST APIs, Vue.js, React Native (basic), Supabase
+    \item \textbf{Automation \& Data:} Playwright, Selenium, pytest, n8n, GitHub Actions, ETL Pipelines, Pandas, Structured Data Processing, Data Cleaning, Data Logging, Automation Systems, Structured Logging, Fault Tolerance
+    \item \textbf{Machine Learning:} PyTorch
+    \item \textbf{Embedded \& Hardware:} ESP32, Arduino, Microcontrollers, Embedded C/C++, FPGA, Sensors, Motor Drivers, PWM, ADCs, UART, I\textsuperscript{2}C, SPI, Serial Communication
+    \item \textbf{Electronics:} Circuit Analysis, MOSFETs, DC-DC Converters, Battery Monitoring, Power Measurement, Digital Logic
+    \item \textbf{Engineering Software \& EDA:} Quartus Prime, ModelSim, COMSOL Multiphysics, MATLAB
+    \item \textbf{Testing \& Measurement:} Verification \& Validation, Experimental Testing, Oscilloscope, Multimeter, Data Collection, Failure Analysis, Regression Testing, Upgrade \& Install Validation, Jira, Xray, Hardware Debugging, Debugging, Troubleshooting, Iterative Testing, JUnit, Mockito, Testcontainers
+    \item \textbf{Systems \& Infrastructure:} Linux, Windows, Windows Server (basic exposure), Git, Docker, Tailscale VPN, SSH, Virtual Machines, VMware vSphere, Basic Network Troubleshooting, VS Code, Arduino IDE
+    \item \textbf{Cloud \& Platforms:} AWS (advanced; completed AWS training courses), Kubernetes, HAProxy, VMware vSphere, Google Cloud Platform (introductory experience)
+    \item \textbf{IT \& Support:} Hardware Troubleshooting, System Debugging, Laptop Setup
+    \item \textbf{Collaboration:} Team projects, code reviews, agile development exposure, Agile/Scrum
+\end{itemize}
+
+%==================== EXPERIENCE ====================
+\section*{Experience}
+
+\textbf{Agfa HealthCare Inc.} \hfill Waterloo, ON\\
+\textit{Performance Engineer -- Verification \& Validation} \hfill Sep 2026 -- Present
+\begin{itemize}
+    \item Perform verification and validation testing on Enterprise Imaging (EI), a medical imaging platform, focused on system performance, load behavior, reliability, and repeatability.
+    \item Designed and ran load and performance tests against deployed EI environments to measure system behavior under load and surface bottlenecks and failures.
+    \item Executed a fresh on-premises deployment of an EI 8.4.5 cluster (database, dual core servers, dual web servers, HAProxy, Kubernetes) following internal documentation, and recorded unclear steps to improve the official installation guides.
+    \item Installed EI 8.2.x with three VM-based proxy clusters; validated end-to-end reading workflows including studies, markups, and snapshots synchronized to the Hub, and performed proxy cache and WADO cache draining.
+    \item Design and execute structured tests while analyzing measurements and system behavior to identify performance bottlenecks and unexpected results.
+    \item Investigate failures through systematic testing, log analysis, debugging, and root-cause analysis of system-level issues across Linux, AWS, and Kubernetes-based environments.
+    \item Develop automation for testing and analysis workflows to improve measurement repeatability, reduce manual effort, and accelerate validation.
+    \item Work in a SAFe-style iteration/PI planning environment using Jira and Xray for sprint management, defect management, and test traceability, within a team covering regression testing, upgrade validation (8.3.x to 8.4.5), AWS/on-prem deployments, and failover/fallback testing.
+    \item Completed onboarding in Linux, AWS, clinical and radiology workflows, information security \& vulnerability scanning, and data protection for health data in solution development.
+    \item Completed AWS training courses as part of professional development, building the cloud foundations used to deploy, configure, and troubleshoot EI environments on AWS infrastructure.
+    \item Developed advanced, hands-on expertise in AWS, deploying, configuring, and troubleshooting EI environments on AWS infrastructure as part of daily verification and validation work.
+    \item Worked extensively with VMware vSphere to provision, configure, and manage the virtual machines used to host EI test environments and proxy clusters.
+    \item Diagnosed and fixed a stale-listener defect in a RecyclerView adapter and resolved Supabase Storage permission problems, which got image uploads working again.
+    \item Led team development using Agile/Scrum practices tracked in Jira, applying an MVP architecture to keep business logic cleanly separated from the user interface.
+\end{itemize}
+
+\entrygap
+\textbf{Graze AI} \hfill San Francisco, USA (Remote)\\
+\textit{Software Engineering Intern} \hfill Jan 2026 -- Apr 2026
+\begin{itemize}
+    \item Built Python ETL pipelines integrating HubSpot, Smartlead, and Front APIs, using Pandas for structured data cleaning, transformation, and automated cross-platform synchronization.
+    \item Designed, built, and deployed ~30 \textbf{n8n} workflows end to end, connecting sales, outreach, and support platforms through API integrations, scheduled triggers, error handling, and data transformation; workflows executed hundreds of times, eliminating repetitive manual work.
+    \item Developed browser and web automation with \textbf{Playwright and Selenium}, and wrote \textbf{pytest} test suites to verify automation and pipeline behavior.
+    \item Performed data validation, aggregation, and consistency checks across multi-source datasets, improving reliability of downstream workflows.
+    \item Designed workflow automation and monitoring systems with retry handling, structured logging, fault recovery, fault-tolerant processing for production data pipelines, and operational health tracking.
+    \item Developed internal tooling for data validation, monitoring, debugging, and operational automation using Python, SQL, and VBA.
+    \item Worked extensively with REST APIs, HTTP requests, authentication flows, and structured JSON data transformation.
+    \item Diagnosed and resolved workflow and data consistency issues in Linux-based environments using Git, scripting, and debugging tools, tracing API responses, transformations, and storage inconsistencies to improve operational reliability.
+    \item Received an \textbf{Outstanding} performance evaluation for ownership, reliability, and debugging contributions.
+\end{itemize}
+
+%==================== PROJECTS ====================
+\section*{Projects}
+
+\textbf{CV Data Pipeline} $|$ \textit{Python, GitHub Actions/Workflows, Roboflow SDK, REST APIs} \hfill Apr 2026
+\begin{itemize}
+    \item Built an end-to-end automated data pipeline for CV dataset generation, reducing clip ingestion-to-upload time from $\sim$5 min to under 2 min (60\%+ improvement) through full automation of download, preprocessing, frame extraction, validation, and upload.
+    \item Designed a fail-closed execution architecture with strict validation and a single execution path; implemented idempotent job tracking and rerun logic to prevent duplicate processing and ensure safe recovery from partial failures.
+    \item Developed a multi-stage batch processing engine with deterministic job planning, per-job failure isolation, and skip logic; integrated REST APIs for clip ingestion and the Roboflow SDK for automated dataset uploads.
+    \item Built a GitHub Actions control plane with typed inputs, validation gates, concurrency controls, and rate limiting, plus an optional LLM-assisted natural-language parsing layer while preserving deterministic execution guarantees.
+\end{itemize}
+
+\entrygap
+\textbf{Multi-threaded HTTP Server} $|$ \textit{C++, Python, POSIX}
+\begin{itemize}
+    \item Built a multi-threaded HTTP/1.1 server in \textbf{C++} serving 6 custom endpoints at \textbf{6,700+ req/s}
+    \item Designed a modular routing system that enabled independent development using the Command design pattern
+    \item Integrated an event-loop, improving server throughput by \textbf{2.5x} while reducing I/O overhead from initial design
+    \item Wrote \textbf{Pytest} integration tests covering routing, concurrency, and edge cases across all 6 endpoints
+\end{itemize}
+
+\entrygap
+\textbf{GPU-Accelerated SPH Fluid Simulation} $|$ \textit{Objective C++, Apple Metal}
+\begin{itemize}
+    \item Built a GPU-accelerated 2D SPH fluid simulator in \textbf{C++} and \textbf{Metal}, supporting \textbf{10K+ particles}
+    \item Accelerated neighbor search by implementing a GPU spatial hash grid using atomic operations and prefix sums
+    \item Implemented GPU compute kernels for density, pressure, viscosity, and semi-implicit Euler integration
+    \item Evaluated GPU scalability by benchmarking CPU vs.\ GPU performance across particle workloads
+\end{itemize}
+
+\entrygap
+\textbf{Custom Unix Shell} $|$ \textit{C, Python, POSIX}
+\begin{itemize}
+    \item Built a unix-like shell in \textbf{C}, supporting \textbf{14 built-in commands}, pipes, background jobs, and variable expansion
+    \item Implemented process control using the process API to manage foreground/background execution
+    \item Designed dynamic memory-managed linked-list structures for environment variables and process tracking
+    \item Multiplexed \textbf{50+ concurrent clients} for non-blocking I/O in a TCP chat system within the shell using select
+\end{itemize}
+
+\entrygap
+\textbf{Banking Simulator} $|$ \textit{Java, PostgreSQL, Spring Boot, JavaScript, HTML/CSS}
+\begin{itemize}
+    \item Designed a normalized \textbf{PostgreSQL} schema supporting customers, accounts, transactions, loans and credit cards
+    \item Built a \textbf{15 endpoint Spring Boot} REST API supporting banking workflows, validated through JUnit, Mockito, and Postgres Testcontainers integration tests
+    \item Built a responsive \textbf{JavaScript, HTML} and \textbf{CSS} frontend with \textbf{12 pages} for real-time banking operations
+\end{itemize}
+
+\entrygap
+\textbf{Full-Stack Productivity Platform} \hfill 2026
+\begin{itemize}
+    \item Built a full-stack web application using \textbf{React, Python/FastAPI, and PostgreSQL}, implementing a RESTful backend and responsive frontend for managing users, projects, tasks, and activity.
+    \item Designed PostgreSQL schemas and API endpoints for persistent application data, relationships, validation, and efficient querying.
+    \item Implemented authentication, authorization, input validation, error handling, and structured backend logging to improve application security and reliability.
+    \item Containerized the application with \textbf{Docker} and implemented automated unit and API tests to verify backend functionality and prevent regressions.
+\end{itemize}
+
+\entrygap
+\textbf{Battery Management \& Energy Monitoring System} \hfill 2026 -- 2027
+\begin{itemize}
+    \item Designed and built an ESP32-based battery monitoring system measuring voltage, current, temperature, and energy consumption with real-time fault detection.
+    \item Developed C++ firmware for sensor acquisition, ADC processing, serial communication, threshold monitoring, and structured data logging.
+    \item Built Python tooling to analyze charge/discharge behavior, characterize energy usage, and visualize experimental measurements.
+    \item Performed controlled experiments to validate measurement accuracy, investigate abnormal readings, and evaluate system behavior under varying loads.
+\end{itemize}
+
+\entrygap
+\textbf{Digital Power Converter \& Efficiency Characterization} \hfill 2026 -- 2027
+\begin{itemize}
+    \item Designed and assembled a low-voltage DC-DC buck converter using MOSFET switching, inductive energy storage, PWM control, and voltage/current feedback.
+    \item Developed microcontroller firmware for PWM generation and monitored converter voltage, current, temperature, and operating conditions.
+    \item Characterized converter efficiency, output regulation, switching behavior, and thermal performance across input voltages and load conditions.
+    \item Used oscilloscope and multimeter measurements to debug switching and regulation issues and validate circuit behavior against expected results.
+\end{itemize}
+
+\entrygap
+\textbf{FPGA Real-Time Motor Control System} \hfill 2026 -- 2027
+\begin{itemize}
+    \item Implemented a real-time digital control system on an FPGA using SystemVerilog, including PWM generation, sensor interfaces, counters, and finite-state-machine control logic.
+    \item Integrated an FPGA with a motor driver and feedback sensors to implement closed-loop speed control.
+    \item Developed simulation and hardware test procedures to verify timing, state transitions, communication interfaces, and control behavior.
+    \item Analyzed measured system response and tuned control parameters to improve stability, response time, and repeatability.
+\end{itemize}
+
+\entrygap
+\textbf{FPGA Claw Machine} $|$ \textit{Verilog, Verilog HDL, Quartus Prime, ModelSim, FPGA}
+\begin{itemize}
+    \item Designed and built a claw machine game on an FPGA using Verilog and Verilog HDL, implementing the control logic, state machines, and user input handling.
+    \item Developed and synthesized the design in Quartus Prime, and verified timing and behavior through ModelSim simulation before testing on hardware.
+\end{itemize}
+
+\entrygap
+\textbf{FPGA Thermostat and Digital Systems} $|$ \textit{Verilog HDL, Quartus Prime, ModelSim, FPGA}
+\begin{itemize}
+    \item Built an FPGA-based thermostat and other digital systems in Verilog HDL, integrating sensor inputs with control logic.
+    \item Used Quartus Prime for design and synthesis and ModelSim for simulation and verification, and used MATLAB and COMSOL for analysis and modelling.
+\end{itemize}
+
+\entrygap
+\textbf{ESP32 Autonomous Embedded Vehicle (Remote Controlled Car)} \hfill 2024 -- 2026
+\begin{itemize}
+    \item Built and programmed an ESP32-based vehicle integrating motor drivers, sensors, Bluetooth communication, and embedded control logic.
+    \item Developed C++ firmware for motor control, sensor acquisition, communication, and command processing, along with control algorithms and wiring diagrams to improve functionality and reliability.
+    \item Debugged wiring, communication, firmware, and hardware/software integration issues through iterative experimental testing and wiring validation.
+    \item Tuned control behavior and evaluated system reliability under different operating conditions.
+\end{itemize}
+
+\entrygap
+\textbf{Self-Hosted Server \& Home Infrastructure} \hfill 2025 -- Present
+\begin{itemize}
+    \item Configured and maintained a self-hosted Linux server environment with Docker containers and Tailscale VPN networking.
+    \item Managed remote access, container deployments, service monitoring, and troubleshooting across multiple hosted applications.
+    \item Used SSH, Linux command-line tools, and scripting for server administration, updates, system monitoring, and automation tasks.
+\end{itemize}
+
+\entrygap
+\textbf{Monochrome Service (Android Accessibility Tool)} \hfill 2026
+\begin{itemize}
+    \item Built Android accessibility service in Kotlin to automate grayscale mode using hardware hotkeys, background services, and timed workflows.
+    \item Implemented overlay dialogs, permission handling, and system-level permission management.
+    \item Debugged device-specific issues related to permissions, background execution, and Android system services.
+\end{itemize}
+
+\entrygap
+\textbf{Toggl Nudge Background Processor} \hfill 2026
+\begin{itemize}
+    \item Developed Python background utility integrating the Toggl API to automate productivity reminders and activity monitoring.
+    \item Implemented logging, configuration management, and Windows background execution tooling.
+\end{itemize}
+
+\entrygap
+\textbf{Habitcore -- Markdown-Native Habit Tracker \& Analytics Dashboard} $|$ \textit{Python, Flask, React, TypeScript, Vite, YAML} \hfill Nov 2026 -- Present
+\begin{itemize}
+    \item Built a habit tracker whose single source of truth is a plain \textbf{Markdown} file synced across devices through Obsidian, with a Python core library (parser, serializer, statistics engine), a \textbf{Flask} REST API, and a \textbf{React/TypeScript} dashboard.
+    \item Reimplemented Loop Habit Tracker's exponentially weighted \textbf{habit-strength} algorithm and verified it against Loop's exported scores for all 9 migrated habits (237 days of history, matching to the export's 4-decimal precision); wrote an importer that migrated the full Loop CSV export.
+    \item Designed a crash-safe storage layer using atomic temp-file writes (\texttt{os.replace}) and content-hash conflict detection so concurrent Obsidian Sync edits are never overwritten; the strict parser reports line-numbered errors and preserves unknown entries so a save can never silently drop data.
+    \item Built an analytics engine (streaks, completion rates over 7/30/90/365-day windows, weekday and monthly breakdowns, cross-habit correlations) and a dashboard with hand-drawn SVG heatmaps and strength curves, click-to-backfill editing, and in-app habit creation.
+    \item Tested with \textbf{28} \textbf{pytest} tests including \textbf{Hypothesis} property-based round-trip tests, with \textbf{mypy} strict typing and \textbf{ruff} linting; packaged with a windowless Windows launcher.
+\end{itemize}
+
+\entrygap
+\textbf{ClariSense -- Environmental Monitoring Project (Hospital Delirium)} \hfill Jan 2025 -- Apr 2025
+\begin{itemize}
+    \item Worked on the project known as Hospital Delirium, a system designed to help hospitals by monitoring environmental conditions that can contribute to patient delirium.
+    \item Configured Arduino-based monitoring systems and automated data collection.
+    \item Analyzed experimental results to validate system accuracy and stability.
+    \item Documented procedures, wiring layouts, and troubleshooting steps for reproducibility.
+\end{itemize}
+
+\entrygap
+\textbf{Arduino Temperature Alert System} \hfill Sep 2024 -- Dec 2024
+\begin{itemize}
+    \item Developed environmental monitoring system with threshold alerts and LED indicators.
+    \item Collected and analyzed sensor data to optimize system performance.
+\end{itemize}
+
+%==================== LEADERSHIP ====================
+\section*{Leadership \& Activities}
+\begin{itemize}
+    \item \textbf{Peer Programming Tutor:} Guided students in debugging, hardware/software integration, and programming concepts.
+    \item \textbf{Video Production Lead:} Managed workflows, timelines, and quality standards for multimedia projects.
+\end{itemize}
+
+\end{document}
